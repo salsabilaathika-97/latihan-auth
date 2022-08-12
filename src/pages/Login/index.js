@@ -15,7 +15,7 @@ const Login = () => {
         setPassword(e.target.value);
     }
 
-    const handleRegister = (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
 
         const payload = {
@@ -29,6 +29,7 @@ const Login = () => {
             (res) => { 
                 setResult(res.data.token)
                 console.log(res.data.token);
+                localStorage.setItem('myToken', res.data.token);
             })
         .catch((err) => console.log(err));
     }
@@ -45,9 +46,9 @@ const Login = () => {
                     <label>Password</label>
                     <input onChange={(e) => handlePassword(e)} type="password" />
                 </div>
-                <button onClick={handleRegister} style = {{ width: "100%", marginTop: "12px" }}>Login</button>
+                <button onClick={handleLogin} style = {{ width: "100%", marginTop: "12px" }}>Login</button>
                 {
-                    !!result.length && <h1>Selamat, Anda Berhasil</h1>
+                    !!result.length && <h1>Selamat, Anda Berhasil. Token Anda adalah {localStorage.getItem('myToken')}</h1>
                 }
             </div>
         </div>
