@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import axios from 'axios';
+import { useNavigate } from "react-router";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [result, setResult] = useState("");
+    let navigate = useNavigate();
 
     const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -30,6 +32,7 @@ const Login = () => {
                 setResult(res.data.token)
                 console.log(res.data.token);
                 localStorage.setItem('myToken', res.data.token);
+                navigate('/dashboard');
             })
         .catch((err) => console.log(err));
     }
