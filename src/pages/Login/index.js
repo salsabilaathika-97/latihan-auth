@@ -24,8 +24,12 @@ const Login = () => {
         }
 
         axios
-        .post("https://reqres.in/api/register", payload)
-        .then((res) => setResult(res.data.token))
+        .post("https://reqres.in/api/login", payload)
+        .then(
+            (res) => { 
+                setResult(res.data.token)
+                console.log(res.data.token);
+            })
         .catch((err) => console.log(err));
     }
 
