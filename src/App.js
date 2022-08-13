@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
 import Register from './pages/Register';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -12,20 +12,27 @@ function App() {
   const [login, setLogin] = useState("");
 
   useEffect(() => {
-      const token = localStorage.getItem('myToken')
-      if(token) {
-        setLogin(token);
+    const checkIfLogin = () => {
+      const token = localStorage.getItem("myToken");
+      if (!token) {
+        setLogin(false);
+      } else {
+        setLogin(true);
       }
+    };
+    checkIfLogin();
+
   }, []);
+
 
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />}/>
+        <Route path="/login" element={<Login setIsLogin={setLogin} />}/>
         <Route path="/dashboard" element={
-          <ProtectedRoute isLogin={login}>
+          <ProtectedRoute user={login}>
               <Dashboard />
           </ProtectedRoute>
         }/>

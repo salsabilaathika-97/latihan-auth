@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router";
 
-const Login = () => {
+const Login = ({setIsLogin}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [result, setResult] = useState("");
@@ -31,6 +31,7 @@ const Login = () => {
             (res) => { 
                 setResult(res.data.token)
                 console.log(res.data.token);
+                setIsLogin(true);
                 localStorage.setItem('myToken', res.data.token);
                 navigate('/dashboard');
             })
