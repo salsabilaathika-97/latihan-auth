@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './HOC/ProtectedRoute';
 import { useEffect, useState } from 'react';
+import DetailPage from './pages/DetailPage';
 
 function App() {
   const [login, setLogin] = useState("");
@@ -36,6 +37,7 @@ function App() {
               <Dashboard />
           </ProtectedRoute>
         }/>
+        <Route path="/detailpage" element={<DetailPage />} />
       </Routes>
     </>
   );
