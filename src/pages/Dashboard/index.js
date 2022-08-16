@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const style = {
     position: 'absolute',
@@ -22,6 +23,9 @@ const Dashboard = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [login, setLogin] = useState("");
+
+    let navigate = useNavigate();
 
     useEffect(() => {
        getData();
@@ -45,6 +49,18 @@ const Dashboard = () => {
           }
         )
         .catch((err) => console.log(err));
+    }
+
+    const handleLogout = () => {
+        const deleteToken = localStorage.removeItem("myToken");
+        console.log(localStorage.getItem("myToken"));
+        if (!deleteToken) {
+            setLogin(false);
+            navigate('/login');
+        } else {
+            setLogin(true);
+        }
+        
     }
 
     return (
@@ -82,7 +98,7 @@ const Dashboard = () => {
                 )
             }
             </div>
-            
+            <button onClick = {handleLogout}>Logout</button>
         </div>
     )
 }

@@ -37,7 +37,11 @@ function App() {
               <Dashboard />
           </ProtectedRoute>
         }/>
-        <Route path="/detailpage/:id" element={<DetailPage />} />
+        <Route path="/detailpage/:id" element={
+          <ProtectedRoute user={login}>
+              <DetailPage />
+          </ProtectedRoute>
+        } />
       </Routes>
     </>
   );
