@@ -57,7 +57,7 @@ const Dashboard = () => {
                         <p>{item.first_name}</p>
                         <img src={item.avatar} />
                         <div>
-                            <Link to = {"/detailpage"}>
+                            <Link to = {`/detailpage/${item.id}`}>
                             <button>Edit</button>
                             </Link>
                             <button onClick={handleOpen}>Delete</button>

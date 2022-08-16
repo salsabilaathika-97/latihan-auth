@@ -37,7 +37,7 @@ function App() {
               <Dashboard />
           </ProtectedRoute>
         }/>
-        <Route path="/detailpage" element={<DetailPage />} />
+        <Route path="/detailpage/:id" element={<DetailPage />} />
       </Routes>
     </>
   );
