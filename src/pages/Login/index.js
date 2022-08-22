@@ -1,9 +1,12 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router";
+import { LoginContext } from "../../context/LoginContext";
 
-const Login = ({setIsLogin}) => {
+const Login = () => {
+    const loginContextData = useContext(LoginContext);
+    const {setLogin} = loginContextData;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [result, setResult] = useState("");
@@ -31,7 +34,7 @@ const Login = ({setIsLogin}) => {
             (res) => { 
                 setResult(res.data.token)
                 console.log(res.data.token);
-                setIsLogin(true);
+                setLogin(true);
                 localStorage.setItem('myToken', res.data.token);
                 navigate('/dashboard');
             })

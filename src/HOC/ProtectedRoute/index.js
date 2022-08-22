@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Navigate } from "react-router";
+import { LoginContext } from "../../context/LoginContext";
 
-const ProtectedRoute = ({user, children}) => {
-  if (!user) {
+const ProtectedRoute = ({ children}) => {
+  const loginContextData = useContext(LoginContext);
+  const {setLogin} = loginContextData;
+
+  if (!setLogin) {
     return <Navigate to = "/login" replace/>
   }
 
